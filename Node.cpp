@@ -2,54 +2,66 @@
 #include <string>
 using namespace std;
 
-//string word = ""
-Node::Node(string word){
-   this->word=word;
+//inTask = nulllptr
+Node::Node(Task* inTask){
+    this->data=inTask;
 }
-string Node::getWord() const{
-   return this->word;
+string Node::getTask() const{
+    return this->data;
 }
 
-void Node::setWord(string newWord){
-   this->word=newWord;
+void Node::setTask(Task* newTask){
+    this->data=newTask;
 }
 
 Node* Node::getPrevious() const{
-   return this->previous;
+    return this->previous;
 }
 
 void Node::setPrevious(Node* newNode){
-   this->previous=newNode;
+    this->previous=newNode;
 }
 
 void Node::setNext(Node* newNode){
-   this->next=newNode;
+    this->next=newNode;
 }
 
 Node* Node::getNext() const{
-   return this->next;
+    return this->next;
 }
 
 bool operator==(const Node &lhs, const Node &rhs) {
-   return (lhs.getWord() == rhs.getWord());
+    return (lhs.getTask() == rhs.getTask());
+}
+
+bool operator==(const Node &lhs, const string &rhs) {
+    return (lhs.getTask() == rhs);
 }
 
 bool operator!=(const Node &lhs, const Node &rhs){
-   return !(lhs == rhs);
+    return !(lhs == rhs);
 }
 
 bool operator<(const Node &lhs, const Node &rhs){
-   return lhs.getWord() < rhs.getWord();
+    return lhs.getTask() < rhs.getTask();
+}
+
+bool operator<(const string &lhs, const Node &rhs){
+    return lhs < rhs.getTask();
+}
+
+bool operator<(const Node &lhs, const std::string rhs){
+    return lhs.getTask() < rhs;
 }
 
 bool operator>(const Node &lhs, const Node &rhs){
-   return rhs < lhs;
+    return rhs < lhs;
 }
 
 bool operator<=(const Node &lhs, const Node &rhs){
-   return !(lhs > rhs);
+    return !(lhs > rhs);
 }
 
 bool operator>=(const Node &lhs, const Node &rhs){
-   return !(lhs < rhs);
+    return !(lhs < rhs);
 }
