@@ -5,7 +5,7 @@
 
 
 struct Task{
-    private:
+    protected:
     std::string title; 
     std::string Descripition;
 
