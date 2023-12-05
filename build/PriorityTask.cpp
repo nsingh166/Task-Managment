@@ -2,12 +2,12 @@
 #include <iostream>
 using namespace std;
 
-PriorityTask::PriorityTask(std::string name){
 
+PriorityTask::PriorityTask(std::string name,std::string desc,int priority){
+    Task(name,desc);
+    this->Priority=priority;
 }
-PriorityTask::PriorityTask(std::string name,int priority){
-    
-}
+
 int PriorityTask::getPriority()const{
     return this->Priority;
 }

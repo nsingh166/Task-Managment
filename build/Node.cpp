@@ -3,14 +3,14 @@
 using namespace std;
 
 //inTask = nulllptr
-Node::Node(Task* inTask){
+Node::Node(PriorityTask* inTask){
     this->data=inTask;
 }
-string Node::getTask() const{
+PriorityTask* Node::getTask() const{
     return this->data;
 }
 
-void Node::setTask(Task* newTask){
+void Node::setPriorityTask(PriorityTask* newTask){
     this->data=newTask;
 }
 

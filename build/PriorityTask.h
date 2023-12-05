@@ -10,7 +10,8 @@ struct PriorityTask : public Task
 
     public:
     PriorityTask(std::string name);
-    PriorityTask(std::string name,int priority);
+    PriorityTask(std::string name,std::string desc);
+    PriorityTask(std::string name,std::string desc,int priority);
     int getPriority()const;
     void setPriority(int number);
 };
