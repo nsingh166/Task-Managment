@@ -3,7 +3,7 @@
 
 #include "Node.h"
 #include "Task.h"
-
+#include "PriorityTask.h"
 struct LinkedList{
 private:
     Node* head;
@@ -12,10 +12,10 @@ private:
 
 public:
     LinkedList();
-    LinkedList(Task* first);
+    LinkedList(PriorityTask* first);
     ~LinkedList();
-    void push_back(Task* toAdd);
-    Node* insert_before(Task* newTask, Node* knownNode);
+    void push_back(PriorityTask* toAdd);
+    Node* insert_before(PriorityTask* newTask, Node* knownNode);
     Node* deleteTask(Node* &toDelete);
     void print();
     int size() const;

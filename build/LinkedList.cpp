@@ -1,5 +1,6 @@
 #include "LinkedList.h"
 #include <iostream>
+#include "PriorityTask.h"
 using namespace std;
 
 //Default constructor
@@ -9,7 +10,7 @@ LinkedList::LinkedList(){
     this->sizeOfLL = 0;
 }
 //Constructor with a parameter
-LinkedList::LinkedList(Task* first){
+LinkedList::LinkedList(PriorityTask* first){
     this->head= nullptr;
     this->tail= nullptr;
     this->sizeOfLL = 0;
@@ -36,7 +37,7 @@ Node* LinkedList::getTail() const {
 }
 
 //Insert before (assumes sorted)
-Node*  LinkedList::insert_before(Task* toAdd, Node * knownNode){
+Node*  LinkedList::insert_before(PriorityTask* toAdd, Node * knownNode){
    //If the linked list is empty, then make the head and tail the same pointer
    if(sizeOfLL == 0){
       Node* currentItem = new Node(toAdd);
@@ -81,7 +82,7 @@ Node*  LinkedList::insert_before(Task* toAdd, Node * knownNode){
    return knownNode->getNext();
 }
 
-void LinkedList::push_back(Task* toAdd){
+void LinkedList::push_back(PriorityTask* toAdd){
    //Make head and tail the same if linked list is empty
    if(sizeOfLL == 0){
       Node* currentItem = new Node(toAdd);

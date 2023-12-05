@@ -12,7 +12,7 @@ struct Task{
     public:
     Task();
     Task(std::string name);
-    Task::Task(std::string name,std::string desciption);
+    Task(std::string name,std::string desciption);
     std::string getTitle()const;
     std::string getDescription()const;
     void setTitle(std::string name);

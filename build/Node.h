@@ -2,20 +2,21 @@
 #define NODE_H
 #include <string>
 #include "Task.h"
+#include "PriorityTask.h"
 
 struct Node{
 private:
-    Task* data;
+    PriorityTask* data;
     Node* previous;
     Node* next;
 public:
-    Node(Task* inTask = nullptr);
-    std::string getTask() const;
+    Node(PriorityTask* inTask = nullptr);
+    PriorityTask* getTask() const;
     Node* getPrevious() const;
     Node* getNext() const;
     void setPrevious(Node* newNode);
     void setNext(Node* newNode);
-    void setTask(Task* newTask);
+    void setPriorityTask(PriorityTask* newTask);
 };
 bool operator==(const Node &lhs, const Node &rhs);
 bool operator==(const Node &lhs, const std::string &rhs);
@@ -28,3 +29,4 @@ bool operator<=(const Node &lhs, const Node &rhs);
 bool operator>=(const Node &lhs, const Node &rhs);
 
 #endif
+
