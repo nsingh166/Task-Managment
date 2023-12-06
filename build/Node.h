@@ -1,32 +1,19 @@
+// node.h
+
 #ifndef NODE_H
 #define NODE_H
-#include <string>
-#include "Task.h"
-#include "PriorityTask.h"
 
-struct Node{
-private:
-    PriorityTask* data;
-    Node* previous;
-    Node* next;
+template <typename T>
+class Node {
 public:
-    Node(PriorityTask* inTask = nullptr);
-    PriorityTask* getTask() const;
-    Node* getPrevious() const;
-    Node* getNext() const;
-    void setPrevious(Node* newNode);
-    void setNext(Node* newNode);
-    void setPriorityTask(PriorityTask* newTask);
+    T data;
+    Node* next;
+    Node* prev; // Pointer to the previous node
+
+    // Constructor
+    Node(const T& data);
 };
-bool operator==(const Node &lhs, const Node &rhs);
-bool operator==(const Node &lhs, const std::string &rhs);
-bool operator!=(const Node &lhs, const Node &rhs);
-bool operator<(const Node &lhs, const Node &rhs);
-bool operator<(const std::string &lhs, const Node &rhs);
-bool operator<(const Node &lhs, const std::string rhs);
-bool operator>(const Node &lhs, const Node &rhs);
-bool operator<=(const Node &lhs, const Node &rhs);
-bool operator>=(const Node &lhs, const Node &rhs);
 
-#endif
+#include "node.tpp"  // Include the implementation file at the end of the header
 
+#endif // NODE_H

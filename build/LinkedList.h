@@ -1,28 +1,35 @@
+// linkedlist.h
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-#include "Node.h"
-#include "Task.h"
-#include "PriorityTask.h"
-struct LinkedList{
-private:
-    Node* head;
-    Node* tail;
-    int sizeOfLL;
+#include "node.h"
 
+template <typename T>
+class LinkedList {
 public:
+    // Constructor
     LinkedList();
-    LinkedList(PriorityTask* first);
+
+    // Destructor
     ~LinkedList();
-    void push_back(PriorityTask* toAdd);
-    Node* insert_before(PriorityTask* newTask, Node* knownNode);
-    Node* deleteTask(Node* &toDelete);
-    void print();
-    int size() const;
-    Node* getHead() const;
-    Node* getTail() const;
+
+    // Function to add a new element to the end of the linked list
+    void push_back(const T& data);
+
+    // Function to insert a new element before a specified node in the linked list
+    void insert(const T& data, Node<T>* beforeNode);
+
+    // Function to display all elements in the linked list
+    void display() const;
+
+    // Function to clear the linked list and free the memory
+    void clear();
+
+    Node<T>* head; // Pointer to the first element in the linked list
+    Node<T>* tail; // Pointer to the last element in the linked list
 };
 
+#include "linkedlist.tpp"  // Include the implementation file at the end of the header
 
-
-#endif
+#endif // LINKEDLIST_H

@@ -1,22 +1,31 @@
+// Task.h
+
 #ifndef TASK_H
 #define TASK_H
 
 #include <string>
 
-
-struct Task{
-    protected:
-    std::string title; 
-    std::string Descripition;
-
-    public:
+class Task {
+public:
+    // Constructors
     Task();
-    Task(std::string name);
-    Task(std::string name,std::string desciption);
-    std::string getTitle()const;
-    std::string getDescription()const;
-    void setTitle(std::string name);
-    void setDescription(std::string desciption);
+    Task(const std::string& title);
+    Task(const std::string& title, const std::string& description);
+
+    // Getters
+    std::string getTitle() const;
+    std::string getDescription() const;
+
+    // Setters
+    void setTitle(const std::string& title);
+    void setDescription(const std::string& description);
+
+    // toString function
+    std::string toString() const;
+
+private:
+    std::string title;
+    std::string description;
 };
 
-#endif
+#endif // TASK_H

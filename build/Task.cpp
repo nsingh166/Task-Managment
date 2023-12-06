@@ -1,30 +1,46 @@
+// Task.cpp
+
 #include "Task.h"
-#include <iostream>
-using namespace std;
 
-Task::Task(){
-    this->title ="";
-    this->Descripition="";
-}
-
-Task::Task(string name){
-    this->title=name;
-    this->Descripition="";
-}
-Task::Task(string name,string desciption){
-    this->title=name;
-    this->Descripition=desciption;
+// Default constructor
+Task::Task() {
+    this->title = "";
+    this->description = "";
 }
 
-std::string Task::getTitle() const{
-    return this->title;
+// Constructor with title
+Task::Task(const std::string& title) {
+    this->title = title;
+    this->description = "";
 }
-std::string Task::getDescription()const{
-    return this->Descripition;
+
+// Constructor with title and description
+Task::Task(const std::string& title, const std::string& description) {
+    this->title = title;
+    this->description = description;
 }
-void Task::setTitle(std::string name){
-    this->title=name;
+
+// toString function implementation
+std::string Task::toString() const {
+    return title + " " + description;
 }
-void Task::setDescription(std::string desciption){
-    this->Descripition=desciption;
-};
+
+// Getter for title
+std::string Task::getTitle() const {
+    return title;
+}
+
+// Getter for description
+std::string Task::getDescription() const {
+    return description;
+}
+
+// Setter for title
+void Task::setTitle(const std::string& title) {
+    this->title = title;
+}
+
+// Setter for description
+void Task::setDescription(const std::string& description) {
+    this->description = description;
+}
