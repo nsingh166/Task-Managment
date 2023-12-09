@@ -28,6 +28,10 @@ public:
     void setTitle(const std::string& title);
     void setDescription(const std::string& description);
 
+    //Task management
+    void addTask(const Task& Task);
+    void removeTask(const std::string& taskTitle);
+
     // PriorityTask management
     void addPriorityTask(const PriorityTask& priorityTask);
     void removePriorityTask(const std::string& taskTitle);
@@ -38,6 +42,7 @@ public:
 
     // Sort priorityTasks based on priority
     void sortPriorityTasks();
+    void sortTasks();
 
     // Display project details
     void displayProjectDetails() const;
