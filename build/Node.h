@@ -14,6 +14,6 @@ public:
     Node(const T& data);
 };
 
-#include "node.tpp"  // Include the implementation file at the end of the header
+#include "Node.tpp"  // Include the implementation file at the end of the header
 
 #endif // NODE_H

@@ -96,9 +96,7 @@ void Project::sortTasks(){
                 Task temp = j->data;
                 j->data = current->data;
                 current->data = temp;
-
             }
-
             j=current;
         }
         i = i->next;
@@ -114,7 +112,7 @@ void Project::sortPriorityTasks() {
         Node<PriorityTask> *LargeNode = current;
         Node<PriorityTask> *next = LargeNode->next;
         while (next != nullptr) {
-            if (next->data.getPriority() > LargeNode->data.getPriority()) {
+            if (next->data.getPriority() < LargeNode->data.getPriority()) {
                 LargeNode = next;
             }
             next = next->next;
@@ -132,8 +130,8 @@ void Project::sortPriorityTasks() {
 void Project::displayProjectDetails() const {
     std::cout << "Project: " << title << std::endl;
     std::cout << "Description: " << description << std::endl;
-    std::cout << "Tasks: ";
+    std::cout << "Tasks: \n";
     tasks.display();
-    std::cout << "Priority Tasks: ";
+    std::cout << "Priority Tasks: \n";
     priorityTasks.display();
 }

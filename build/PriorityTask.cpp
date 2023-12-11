@@ -4,7 +4,8 @@ using namespace std;
 
 
 PriorityTask::PriorityTask(std::string title, std::string desc,int priority){
-    Task(title, desc);
+    this->setTitle(title);
+    this->setDescription(desc);
     this->Priority=priority;
 }
 

@@ -10,4 +10,4 @@ void testPTask();
 void testProject();
 
 
-#endif //FINALPROJECT_TESTER_H
+#endif //TESTER_H

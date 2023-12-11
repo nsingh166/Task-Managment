@@ -3,7 +3,7 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
-#include "node.h"
+#include "Node.h"
 
 template <typename T>
 class LinkedList {
@@ -30,6 +30,6 @@ public:
     Node<T>* tail; // Pointer to the last element in the linked list
 };
 
-#include "linkedlist.tpp"  // Include the implementation file at the end of the header
+#include "LinkedList.tpp"  // Include the implementation file at the end of the header
 
 #endif // LINKEDLIST_H

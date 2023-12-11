@@ -54,10 +54,9 @@ template <typename T>
 void LinkedList<T>::display() const {
     Node<T>* current = head;
     while (current != nullptr) {
-        std::cout << current->data.toString() << " ";
+        std::cout <<"\t"<< current->data.toString() << " "<<std::endl;
         current = current->next;
     }
-    std::cout << std::endl;
 }
 
 template <typename T>
