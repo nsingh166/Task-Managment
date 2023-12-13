@@ -26,6 +26,9 @@ public:
     // Function to clear the linked list and free the memory
     void clear();
 
+
+
+
     Node<T>* head; // Pointer to the first element in the linked list
     Node<T>* tail; // Pointer to the last element in the linked list
 };

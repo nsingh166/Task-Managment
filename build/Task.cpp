@@ -22,7 +22,7 @@ Task::Task(const std::string& title, const std::string& description) {
 
 // toString function implementation
 std::string Task::toString() const {
-    return title + " - " + description;
+    return title + " " + description;
 }
 
 // Getter for title

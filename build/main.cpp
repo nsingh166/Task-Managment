@@ -3,39 +3,106 @@
 #include "PriorityTask.h"
 #include "LinkedList.h"
 #include "Project.h"
+#include <string>
+#include <istream>
 using namespace std;
-
+void insertList(LinkedList<Task>* list,string Name,Task task);
+enum Actions {QUIT,ADDTASK,ADDPRIORITY,INSERTTASK,SEARCHTASK,SEARCHPRIORITY,REMOVETASK,REMOVEPRIORITY};
 int main() {
+    // Creating a linked list of Task objects
+    int choice=100;
+    string Name;
+    string Desc;
+    cout<<"Add a Name then a Description of Project:\n";
+
+    cin>>Name;
+    getline(cin>>ws,Desc);
+    Project * project = new Project(Name,Desc);
+    while(choice != Actions::QUIT){
+        cout<<"Enter a choice to add to the Project list\n";
+        cout<<"0=Quit 1=AddTask 2=AddPriorityTask 3=InsertTask 4=SearchTasks 5=SearchPriorityTasks 6=RemoveTask 7=RemovePriority\n";
+        cin>>choice;
+        if(choice == Actions::ADDTASK){
+            cout<<"Add a Name then a Description of Task:\n";
+            cin>>Name;
+            getline(cin>>ws,Desc);
+            Task task(Name,Desc);
+            project->addTask(task);
+        }
+        else if(choice == Actions::ADDPRIORITY){
+            cout<<"Add a Name of Task then a Desciption then a Priority number:\n";
+            cin>>Name;
+            getline(cin>>ws,Desc);
+            int priority;
+            cin>>priority;
+            PriorityTask task(Name,Desc,priority);
+            project->addPriorityTask(task);
+        }
+        else if(choice == Actions::INSERTTASK){
+            cout<<"Add a Name then a Description of Task:\n";
+            cin>>Name;
+            getline(cin>>ws,Desc);
+            Task task(Name,Desc);
+            cout<<"Which task do you want before this:\n";
+            cin>>Name;
+            insertList(project->getTasks(),Name,task);
+        }
+
+        else if(choice==Actions::SEARCHTASK){
+            cout<<"Search for the Name of a Task:\n";
+            cin>>Name;
+            Task task=project->searchTask(Name);
+            if(task.getTitle()=="Error"){
+                cout<<"Not Found\n";
+            }
+            else{
+                cout<<"Found\n";
+            }
+        }
+        else if(choice==Actions::SEARCHPRIORITY){
+            cout<<"Search for the Name of a PriorityTask:\n";
+            cin>>Name;
+            PriorityTask task= project->searchPriorityTask(Name);
+            if(task.getTitle()=="Error"){
+                cout<<"Not Found\n";
+            }
+            else{
+                cout<<"Found\n";
+                cout<<"Priority is "<<task.getPriority()<<endl;
+            }
+        }
+        else if(choice==Actions::REMOVETASK) {
+            cout<<"The Name of Task to remove:\n";
+            cin>>Name;
+            project->removeTask(Name);
+        }
+        else if(choice==Actions::REMOVEPRIORITY) {
+            cout<<"The Name of PriorityTask to remove:\n";
+            cin>>Name;
+            project->removePriorityTask(Name);
+        }
+
+        cout<<"\n";
+        project->displayProjectDetails();
+    }
+    cout<<"\n";
+    cout<<"Sorting....\n";
+    project->sortPriorityTasks();
+    project->sortTasks();
+    cout<<"Done\n";
+    project->displayProjectDetails();
 
 
-    Project* myProj = new Project("CSC-340 Final Project", "Final project demonstration!");
-    Task task1("Groceries", "apples, bread, milk, eggs");
-    Task task2("Homework", "CSC Final, MATH Final, ENGL Paper");
-    Task task3("Chores", "kitchen, bathroom, mop, sweep, windows");
-
-    cout<<"----Empty Project----"<<endl;
-    myProj->displayProjectDetails();
-
-    cout<<"----Adding Task objects to Project----"<<endl;
-    myProj->addTask(task1);
-    myProj->addTask(task2);
-    myProj->addTask(task3);
-    myProj->displayProjectDetails();
-
-    cout<<"----Adding PriorityTask objects to Project----"<<endl;
-    PriorityTask priorityTask1("Make dinner", "Last task of the day, not pressing", 3);
-    PriorityTask priorityTask2("CSC-340 Final Project", "Demo is today 11/11/23!", 1);
-    PriorityTask priorityTask3("Work", "Must go to work after school today", 2);
-
-    myProj->addPriorityTask(priorityTask1);
-    myProj->addPriorityTask(priorityTask2);
-    myProj->addPriorityTask(priorityTask3);
-    myProj->displayProjectDetails();
-
-    cout<<"----Sorting both Task and Priority Task objects----"<<endl;
-    myProj->sortTasks();
-    myProj->sortPriorityTasks();
-    myProj->displayProjectDetails();
 
     return 0;
+}
+void insertList(LinkedList<Task>* list,string Name,Task task){
+    Node<Task> * node = list->head;
+    while(node!= nullptr){
+        if(node->data.getTitle()==Name){
+            list->insert(task,node);
+        }
+        node=node->next;
+    }
+
 }

@@ -7,7 +7,14 @@ Project::Project() : title(""), description("") {}
 
 Project::Project(const std::string& title, const std::string& description)
         : title(title), description(description) {}
-
+LinkedList<Task>* Project::getTasks(){
+    LinkedList<Task>* testList;
+    testList= &tasks;
+    return testList;
+}
+LinkedList<PriorityTask> Project::getPriorityTasks() const{
+    return priorityTasks;
+}
 // Accessors
 std::string Project::getTitle() const {
     return title;
@@ -30,16 +37,41 @@ void Project::addTask(const Task& Task) {
 }
 
 void Project::removeTask(const std::string& taskTitle) {
-    Node<Task> *removal = tasks.head;
+    Node<Task> *removal;
+    removal = tasks.head;
     while (removal != nullptr){
-        if(removal->data.getTitle()!=taskTitle){
-            removal->prev->next=removal->next;
-            removal->next->prev=removal->prev;
+        if(removal->data.getTitle()==taskTitle){
+            if(removal->next== nullptr && removal->prev!= nullptr){
+                removal->prev->setNext(nullptr);
+                tasks.tail=removal->prev;
+                delete removal;
+                std::cout<<"delete is done\n";
+                break;
+            }
+            else if(removal->prev== nullptr && removal->next!=nullptr){
+                removal->next->setPrev(nullptr);
+                tasks.head=removal->next;
+                delete removal;
+                std::cout<<"delete is done\n";
+                break;
+            }
+            else if(removal->prev== nullptr && removal->next==nullptr){
+                tasks.clear();
+            }
+            else{
+                removal->prev->setNext(removal->next);
+                removal->next->setPrev(removal->prev);
+                delete removal;
+                std::cout<<"delete is done\n";
+                break;
+            }
 
-            delete removal;
         }
+        removal=removal->next;
     }
 }
+
+
 
 // PriorityTask management
 void Project::addPriorityTask(const PriorityTask& priorityTask) {
@@ -47,14 +79,37 @@ void Project::addPriorityTask(const PriorityTask& priorityTask) {
 }
 
 void Project::removePriorityTask(const std::string& taskTitle) {
-    Node<PriorityTask> *removal = priorityTasks.head;
+    Node<PriorityTask> *removal;
+    removal = priorityTasks.head;
     while (removal != nullptr){
-        if(removal->data.getTitle()!=taskTitle){
-            removal->prev->next=removal->next;
-            removal->next->prev=removal->prev;
+        if(removal->data.getTitle()==taskTitle){
+            if(removal->next== nullptr && removal->prev!= nullptr){
+                removal->prev->setNext(nullptr);
+                priorityTasks.tail=removal->prev;
+                delete removal;
+                std::cout<<"delete is done\n";
+                break;
+            }
+            else if(removal->prev== nullptr && removal->next!=nullptr){
+                removal->next->setPrev(nullptr);
+                priorityTasks.head=removal->next;
+                delete removal;
+                std::cout<<"delete is done\n";
+                break;
+            }
+            else if(removal->prev== nullptr && removal->next==nullptr){
+                priorityTasks.clear();
+            }
+            else{
+                removal->prev->setNext(removal->next);
+                removal->next->setPrev(removal->prev);
+                delete removal;
+                std::cout<<"delete is done\n";
+                break;
+            }
 
-            delete removal;
         }
+        removal=removal->next;
     }
 }
 
@@ -67,7 +122,7 @@ Task Project::searchTask(const std::string& taskTitle) const {
         }
         current=current->next;
     }
-    Task error= Task("","Not Found");
+    Task error= Task("Error","Not Found");
     return error;
 }
 
@@ -80,7 +135,7 @@ PriorityTask Project::searchPriorityTask(const std::string& taskTitle) const {
         current=current->next;
     }
 
-    PriorityTask error= PriorityTask("","Not Found",0);
+    PriorityTask error= PriorityTask("Error","Not Found",0);
     return error;
 }
 
@@ -96,7 +151,9 @@ void Project::sortTasks(){
                 Task temp = j->data;
                 j->data = current->data;
                 current->data = temp;
+
             }
+
             j=current;
         }
         i = i->next;
@@ -112,7 +169,7 @@ void Project::sortPriorityTasks() {
         Node<PriorityTask> *LargeNode = current;
         Node<PriorityTask> *next = LargeNode->next;
         while (next != nullptr) {
-            if (next->data.getPriority() < LargeNode->data.getPriority()) {
+            if (next->data.getPriority() > LargeNode->data.getPriority()) {
                 LargeNode = next;
             }
             next = next->next;

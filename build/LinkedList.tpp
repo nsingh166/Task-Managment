@@ -4,6 +4,7 @@
 #define LINKEDLIST_TPP
 
 #include <iostream>
+#include "PriorityTask.h"
 
 template <typename T>
 LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr) {}
@@ -54,9 +55,10 @@ template <typename T>
 void LinkedList<T>::display() const {
     Node<T>* current = head;
     while (current != nullptr) {
-        std::cout <<"\t"<< current->data.toString() << " "<<std::endl;
+        std::cout << current->data.toString() << " ";
         current = current->next;
     }
+    std::cout << std::endl;
 }
 
 template <typename T>
@@ -69,5 +71,8 @@ void LinkedList<T>::clear() {
     }
     head = tail = nullptr;
 }
+
+
+
 
 #endif // LINKEDLIST_TPP

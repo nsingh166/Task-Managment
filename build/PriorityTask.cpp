@@ -3,6 +3,11 @@
 using namespace std;
 
 
+PriorityTask::PriorityTask(std::string title, std::string desc){
+    this->setTitle(title);
+    this->setDescription(desc);
+    this->Priority=0;
+}
 PriorityTask::PriorityTask(std::string title, std::string desc,int priority){
     this->setTitle(title);
     this->setDescription(desc);

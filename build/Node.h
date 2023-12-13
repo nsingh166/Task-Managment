@@ -12,6 +12,10 @@ public:
 
     // Constructor
     Node(const T& data);
+
+    //setters
+    void setNext(Node<T>* nextNode);
+    void setPrev(Node<T>* prevNode);
 };
 
 #include "Node.tpp"  // Include the implementation file at the end of the header

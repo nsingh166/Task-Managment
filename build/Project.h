@@ -23,6 +23,8 @@ public:
     // Accessors
     std::string getTitle() const;
     std::string getDescription() const;
+    LinkedList<Task>* getTasks();
+    LinkedList<PriorityTask> getPriorityTasks() const;
 
     // Mutators
     void setTitle(const std::string& title);
