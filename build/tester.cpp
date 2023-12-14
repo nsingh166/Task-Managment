@@ -1,6 +1,5 @@
 #include "tester.h"
-#include "LinkedList.h"
-#include "PriorityTask.h"
+#include "Project.h"
 using namespace std;
 
 void testAll(){
@@ -121,7 +120,7 @@ void testTask(){//needs operator
 }
 void testPTask(){//needs operator
     //Test Priority Task data members and inheritance
-    cout << "-----Testing Priority Task-----" << endl;
+    cout << "-----Testing PriorityTask-----" << endl;
     {
         PriorityTask *task = new PriorityTask("Title", "Desc", 1);
 
@@ -138,6 +137,44 @@ void testPTask(){//needs operator
         task = NULL;
     }
 }
+
 void testProject(){
-    cout<<""<<endl;
+    {
+        cout << "-----Testing Project-----" << endl;
+        Project* proj = new Project("Title", "Desc");
+        Task* task1 = new Task("Task1", "Desc1");
+        PriorityTask* ptask1 = new PriorityTask("PTask1", "Desc2", 1);
+
+
+        if (proj->getTitle() != "Title") cout << ".title fail" << endl;
+        else cout << ".title match correct" << endl;
+        if (proj->getDescription() != "Desc") cout << ".description fail" << endl;
+        else cout << ".description match correct" << endl;
+
+        //Will search for Node and return a Task object
+        cout << "-----Testing Add/Search Task-----" << endl;
+        proj->addTask(*task1);
+        if(proj->getTasks()->head->data.getTitle() !="Task1") cout<<"AddTask() fail"<<endl;
+        else cout<<"AddTask() correct"<<endl;
+        if(proj->searchTask("Task1").getTitle() != "Task1") cout<<"addTask() or searchTask() fail"<<endl;
+        else cout <<"addTask() and searchTask() correct"<<endl;
+
+        //Will search for Node and return PriorityTask object
+        cout << "-----Testing Add/Search PriorityTask-----" << endl;
+        proj->addPriorityTask(*ptask1);
+        if(proj->getPriorityTasks()->head->data.getTitle() != "PTask1") cout<<"AddPriorityTask() fail"<<endl;
+        else cout<<"AddPriorityTask() correct"<<endl;
+        if(proj->searchPriorityTask("PTask1").getTitle() != "PTask1") cout<<"addPriorityTask() or searchPriorityTask() fail"<<endl;
+        else cout <<"addPriorityTask() and searchPriorityTask() correct"<<endl;
+
+        cout << "-----Testing Remove Task-----" << endl;
+        proj->removeTask("Task1");
+        if(proj->getTasks()->head != nullptr) cout<<"removeTask() fail"<<endl;
+        else cout <<"removeTask() correct"<<endl;
+
+        cout << "-----Testing Remove PriorityTask-----" << endl;
+        proj->removeTask("PTask1");
+        if(proj->getPriorityTasks()->head != nullptr) cout<<"removePriorityTask() fail"<<endl;
+        else cout <<"removePriorityTask() correct"<<endl;
+    }
 }
